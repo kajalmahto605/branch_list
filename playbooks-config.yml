@@ -1,0 +1,69 @@
+base_oraclelinux:
+  playbooks:
+  - core-system-customization.yml
+base_ubuntu:
+  playbooks:
+  - core-system-customization.yml
+eclass_oraclelinux:
+  parent_groups:
+  - managed_oraclelinux
+  playbooks:
+  - eclass.yml
+eclass_ubuntu:
+  parent_groups:
+  - managed_ubuntu
+  playbooks:
+  - eclass.yml
+jimmy_test_group:
+  parent_groups:
+  - managed_ubuntu
+  playbooks:
+  - jimmy_test_group.yml
+managed_oraclelinux:
+  parent_groups:
+  - base_oraclelinux
+  playbooks:
+  - managed-system-customization.yml
+managed_ubuntu:
+  parent_groups:
+  - base_ubuntu
+  playbooks:
+  - managed-system-customization.yml
+ssrp_amigprd:
+  parent_groups:
+  - managed_ubuntu
+  playbooks:
+  - ssrp_amigprd.yml
+ssrp_amwebprd:
+  parent_groups:
+  - managed_ubuntu
+  playbooks:
+  - ssrp_amwebprd.yml
+unmanaged_ubuntu:
+  parent_groups:
+  - base_ubuntu
+  playbooks:
+  - unmanaged_ubuntu.yml
+test_windows:
+  playbooks:
+  - test_windows.yml
+
+ fetch the YAML file form the github in the groovy script This is the YAMl file in my git repo https://github.com/kajalmahto605/git_task1.git and located the 
+branch name is main  
+1.the requirement is the  fetch the YAMl file in git repo
+2.in this data store into the dropdownlist using the Active Choices Reactive Parameter
+3. In the two time select the Active Choices Reactive Parameter
+4. The requiremnet also when i choose the example ager mai aisa kahu ki unmanaged_ubuntu ko select kro and usme jitna ho woh plyabook list ho but 
+ager iska koi parent_gruop ho to uska bhi playbook mujhe isi dropdown list me shoe hona chahiye 
+example dropdown list1-->unmanaged_ubuntu-->playbook-->unmanaged_ubuntu.yml but iska jo parent_gruopt hai 
+woh base_ubuntu--> hai to iski bhi playbook -->show honi chahiye -->managed-system-customization.yml
+
+Note: maine pehle hi ek active choice banaya jisme mai specifi git repo ki branch name show krwa rahi and usi ek branch me 
+meri playbook-config.yml ki file hai means    branch_name---main ---->playbook-config.yml  isko dhyaan me rakh ke mujhe step by step sare code and
+konsi feiled me kya krna hai and kaise karna hai sab kuchh step by step in easy method   and also make the pdf of that answer
+i will share the already  make the  dropdownlist for the list the branch name:
+def gitUrl = "https://github.com/kajalmahto605/git_task1.git"
+def gitBranches = "git ls-remote --heads ${gitUrl}".execute().text.readLines().collect { it.split()[1].replaceAll("refs/heads/", "") }.sort().reverse()
+aapko ager kuchh bhi add ya change karna  ho to kar skte ho means ki branch k andr ki file ko listing karna 
+
+ 
